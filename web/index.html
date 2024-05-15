@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://umami.clinicpaws.com/script.js" data-website-id="b03ba0b8-85c0-4674-8b54-195b4feabd49"></script>
+  <script defer data-domain="me.clinicpaws.com" src="https://plausible.clinicpaws.com/js/script.js"></script>
+
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="portfolio">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>portfolio</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = null;
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+
+  <!-- Add Cupertino loading indicator CSS -->
+  <style>
+    .loading-indicator {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+    }
+  
+    .loading-icon {
+      width: 100px; /* Adjust diameter if needed */
+      height: 100px; /* Adjust diameter if needed */
+      border: 5px solid #e6c068; /* Use the same color */
+      border-top-color: transparent; /* Make the top transparent */
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+    }
+  
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+  
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Popup modal styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 10000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading indicator -->
+  <div id="loading" class="loading-indicator">
+    <div class="loading-icon"></div>
+  </div>
+
+  <!-- Popup modal -->
+  <div id="popup" class="popup">
+    <p>The app is taking longer than usual to load. Please refresh the page.</p>
+  </div>
+
+  <script>
+    // Set a timeout to show the popup after 30 seconds
+    var popupTimeout = setTimeout(function() {
+      document.getElementById('popup').style.display = 'block';
+    }, 30000);
+
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          clearTimeout(popupTimeout); // Clear the timeout if the app loads before 30 seconds
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+            // Hide the loading indicator once Flutter app is fully loaded
+            document.getElementById('loading').style.display = 'none';
+          });
+        }
+      });
+    });
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_cQ0l1xDb6YxnZ7ejVM1M4a4Yt4bDHbE",
+      authDomain: "white-acdc9.firebaseapp.com",
+      projectId: "white-acdc9",
+      storageBucket: "white-acdc9.appspot.com",
+      messagingSenderId: "588519300110",
+      appId: "1:588519300110:web:02d2a52cc7ba349148b05f",
+      measurementId: "G-24TLPT0Q1S"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</body>
+</html>
