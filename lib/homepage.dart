@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -25,119 +26,129 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      child: Material(
-        child: CustomScrollView(
-          slivers: <Widget>[
-            const CupertinoSliverNavigationBar(
-              largeTitle: Text(
-                'Clinicpaws',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Eyesome',
-                  fontSize: 24,
-                  fontWeight: FontWeight.normal,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              backgroundColor: Colors.transparent, // transparent background
-            ),
-            CupertinoSliverRefreshControl(
-              onRefresh: () async {
-                // Add your refresh logic here
-              },
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                color: Colors.transparent, // transparent background
-                width: double.infinity,
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.network(
-                      'https://storage.googleapis.com/sudhacdn/light.png',
-                      width: 800,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      '"Prepare to be enchanted as we whisk your pets away on a whimsical journey through the cosmos of veterinary excellence, where the absurd and the sublime converge in glorious harmony."',
-                      style: TextStyle(color: Colors.black),
-                      textAlign: TextAlign.center, // Align text in the center
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {
-                    _launchURL(
-                        'https://schedule.clinicpaws.com/sdmydbr/appointment');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? Colors.black
-                          : Colors.white,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 20),
-                    child: Text(
-                      'Book an Appointment',
-                      style: TextStyle(
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? Colors.white
-                            : Colors.black,
-                      ),
+      child: SafeArea(
+        child: Material(
+          child: CustomScrollView(
+            slivers: <Widget>[
+              CupertinoSliverNavigationBar(
+                  largeTitle: Text(
+                    'Clinicpaws',
+                    style: TextStyle(
+                      color: Colors
+                          .black, // Or use Theme.of(context).textTheme.appBarTitle.color
+                      fontFamily: 'Eyesome',
+                      fontSize: 24,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
-                ),
+                  backgroundColor:
+                      Colors.transparent // Set background to primaryColor
+                  ),
+              CupertinoSliverRefreshControl(
+                onRefresh: () async {
+                  // Add your refresh logic here
+                },
               ),
-            ),
-            const SliverToBoxAdapter(
-              child: ServicesTile(),
-            ),
-            const SliverToBoxAdapter(
-              child: ContactUsTile(),
-            ),
-            const SliverToBoxAdapter(
-              child: ConnectUsOnSocialTile(),
-            ),
-            const SliverToBoxAdapter(
-              child: AboutMeTile(),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                color: CupertinoColors.extraLightBackgroundGray.withOpacity(0),
-                padding: const EdgeInsets.all(8.0),
-                child: const Text.rich(
-                  TextSpan(
+              SliverToBoxAdapter(
+                child: Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextSpan(
-                        text: 'Clinicpaws ',
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.black, // Set text color
-                          fontStyle:
-                              FontStyle.italic, // Set text style to italic
-                          fontFamily: 'Eyesome', // Set font family to Eyesome
-                        ),
+                      Image.network(
+                        'https://storage.googleapis.com/sudhacdn/light.png',
+                        width: 800,
                       ),
-                      TextSpan(
-                        text: '2023 Copyright © All rights reserved',
-                        style: TextStyle(color: Colors.black, fontSize: 8),
+                      const SizedBox(height: 16),
+                      const Text(
+                        '"Prepare to be enchanted as we whisk your pets away on a whimsical journey through the cosmos of veterinary excellence, where the absurd and the sublime converge in glorious harmony."',
+                        style: TextStyle(color: Colors.black),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
-                  textAlign: TextAlign.center, // Align text in the center
                 ),
               ),
-            ),
-          ],
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      _launchURL(
+                          'https://schedule.clinicpaws.com/sdmydbr/appointment');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
+                      child: Text(
+                        'Book an Appointment',
+                        style: TextStyle(
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.white
+                                  : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: ServicesTile(),
+              ),
+              const SliverToBoxAdapter(
+                child: ContactUsTile(),
+              ),
+              const SliverToBoxAdapter(
+                child: ConnectUsOnSocialTile(),
+              ),
+              const SliverToBoxAdapter(
+                child: AboutMeTile(),
+              ),
+              SliverToBoxAdapter(
+                child: Container(
+                  color:
+                      CupertinoColors.extraLightBackgroundGray.withOpacity(0),
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Clinicpaws ',
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors
+                                .black, // Or use Theme.of(context).textTheme.bodyText1.color
+                            fontStyle: FontStyle.italic,
+                            fontFamily: 'Eyesome',
+                          ),
+                        ),
+                        TextSpan(
+                          text: '2023 Copyright © All rights reserved',
+                          style: TextStyle(
+                            color: Colors
+                                .black, // Or use Theme.of(context).textTheme.bodyText1.color
+                            fontSize: 8,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -159,8 +170,8 @@ class AboutMeTile extends StatelessWidget {
                 : Colors.transparent,
           ),
           borderRadius: BorderRadius.circular(12.0),
-          color: CupertinoColors
-              .white, // Set the background color of the tile to white
+          color: Theme.of(context)
+              .scaffoldBackgroundColor, // Use theme background color
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -492,7 +503,7 @@ class ConnectUsOnSocialTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   _buildSocialButton(
-                    icon: FontAwesomeIcons.x,
+                    icon: FontAwesomeIcons.xTwitter,
                     color: Colors.black,
                     text: 'X (formerly twitter)',
                     onPressed: () async {
